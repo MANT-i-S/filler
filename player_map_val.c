@@ -6,34 +6,35 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/27 21:25:48 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/28 15:40:41 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void player_map_val()
+void player_val(t_table *tab, char *line)
 {
-    char *line;
-    t_table *tab;
+    int i;
 
-    tab = (t_table *)malloc(sizeof(t_table));
-    line = NULL;
-    while(get_next_line(0, &line))
+    i = 0;
+    while(i < 9)
     {
-    if(ft_strstr(line, "p1 : [sholiak.filler]"))
-    tab->player = 1;
-    else if(ft_strstr(line, "p2 : [sholiak.filler]"))
-    tab->player = 2;
-    else if(ft_strstr(line, "Plateau"))
-    map_val(tab, line);
-    else if(ft_strstr(line, "Piece"))
-    detect_size(tab, line);
+    get_next_line(0, &line);
+    i++;
+    if(ft_strstr(line, "p1 : [players/sholiak.filler]"))
+    tab->myplayer = -1;
+    else if(ft_strstr(line, "p2 : [players/sholiak.filler]"))
+    tab->myplayer = -2;
+    // else if(ft_strstr(line, "Plateau"))
+    // map_val(tab, line);
+    // else if(ft_strstr(line, "Piece"))
+    // detect_size(tab, line);
     }
 }
 
 void map_val(t_table *tab, char *line)
 {
+    get_next_line(0, &line);
     if(ft_strstr(line, "Plateau 15 17:"))
     tab->map_size = 1;
     else if(ft_strstr(line, "Plateau 24 40:"))
@@ -65,9 +66,9 @@ void map_fill_1(t_table *tab, char *line)
                 i = 4;
                 while(line[i])
                 {
-                    if(line[i] == 'x' || line[i] == 'X')
+                    if(line[i] == 'o' || line[i] == 'O')
                         tab->map1[x][y] = -1;
-                    else if (line[i] == 'o' || line[i] == 'O')
+                    else if (line[i] == 'x' || line[i] == 'X')
                         tab->map1[x][y] = -2;
                     i++;
                     y++;

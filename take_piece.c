@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/27 21:18:38 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/28 15:44:50 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void detect_size(t_table *tab, char *line)
     int j;
     char *digit;
 
+    get_next_line(0, &line);
     digit = malloc(sizeof(char) * 3);
     i = 0;
     j = 0;
@@ -26,7 +27,7 @@ void detect_size(t_table *tab, char *line)
     while(line[i] >= '0' && line[i] <= '9')
     digit[j++] = line[i++];
     digit[j] = '\0';
-    tab->piece_max = ft_atoi(digit);
+    tab->piece_max_x = ft_atoi(digit);
     free(digit);
     take_piece(tab, line);
 }
@@ -39,7 +40,7 @@ void take_piece(t_table *tab, char *line)
 
     i = 0;
     x = 0;
-    while(x < tab->piece_max)
+    while(x < tab->piece_max_x)
     {
         get_next_line(0, &line);
         i = 0;

@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:40 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/27 21:45:30 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/28 15:49:08 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,10 @@ void print_move(t_table *tab)
     
     x = ft_itoa(tab->f_x);
     y = ft_itoa(tab->f_y);
-    // ft_putstr("<got (O) : [");
     ft_putstr(x);
     ft_putchar(' ');
     ft_putstr(y);
     ft_putchar('\n');
-    free(tab);
-    player_map_val();
-    // ft_putstr("] (");
-    // ft_putstr(x);
-    // ft_putchar(',');
-    // ft_putstr(y);
-    // ft_putchar(')');
 }
 
 void    copy_map(t_table *tab)
