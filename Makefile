@@ -6,7 +6,7 @@
 #    By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:03:46 by sholiak           #+#    #+#              #
-#    Updated: 2019/09/25 14:18:55 by sholiak          ###   ########.fr        #
+#    Updated: 2019/09/27 15:58:18 by sholiak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all: $(NAME)
 $(NAME):
 	gcc -c -Wall -Wextra -Werror $(LIBFILES)
 	ar rcs $(NAME) $(OBJ)
-	gcc -Wall -Wextra -Werror filler.c player_map_val.c take_piece.c get_next_line.c libft.a -o sholiak.filler -g
+	gcc -Wall -Wextra -Werror filler.c player_map_val.c take_piece.c make_move.c get_next_line.c libft.a -o sholiak.filler -g
 	
 clean:
 	rm -f $(OBJ) $(LIBOBJ)

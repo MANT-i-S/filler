@@ -6,27 +6,29 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/27 14:45:51 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/27 21:25:48 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void player_map_val(t_table *tab)
+void player_map_val()
 {
     char *line;
+    t_table *tab;
 
+    tab = (t_table *)malloc(sizeof(t_table));
     line = NULL;
     while(get_next_line(0, &line))
     {
-    if(ft_strstr(line, "p1 : [players/sholiak.filler]"))
+    if(ft_strstr(line, "p1 : [sholiak.filler]"))
     tab->player = 1;
-    else if(ft_strstr(line, "p2 : [players/sholiak.filler]"))
+    else if(ft_strstr(line, "p2 : [sholiak.filler]"))
     tab->player = 2;
-    else if(ft_strstr(line, "Piece"))
-    take_piece(tab, line);
-    else if(ft_strstr(line, "0123456789"))
+    else if(ft_strstr(line, "Plateau"))
     map_val(tab, line);
+    else if(ft_strstr(line, "Piece"))
+    detect_size(tab, line);
     }
 }
 
@@ -56,8 +58,9 @@ void map_fill_1(t_table *tab, char *line)
     get_next_line(0, &line);
     if(ft_strstr(line, "0123456789"))
         {
-            while(get_next_line(0, &line) && !ft_strstr(line, "Piece"))
+            while(x <= 14)
             {
+                get_next_line(0, &line);
                 y = 0;
                 i = 4;
                 while(line[i])
