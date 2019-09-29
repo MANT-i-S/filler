@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/28 15:44:50 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/28 19:24:04 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void take_piece(t_table *tab, char *line)
 
     i = 0;
     x = 0;
+    ft_bzero(tab->full_piece, sizeof(tab->full_piece));
     while(x < tab->piece_max_x)
     {
         get_next_line(0, &line);
