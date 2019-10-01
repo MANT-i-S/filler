@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/28 15:40:41 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/29 14:22:13 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,11 @@
 
 void player_val(t_table *tab, char *line)
 {
-    int i;
-
-    i = 0;
-    while(i < 9)
-    {
     get_next_line(0, &line);
-    i++;
     if(ft_strstr(line, "p1 : [players/sholiak.filler]"))
     tab->myplayer = -1;
     else if(ft_strstr(line, "p2 : [players/sholiak.filler]"))
     tab->myplayer = -2;
-    // else if(ft_strstr(line, "Plateau"))
-    // map_val(tab, line);
-    // else if(ft_strstr(line, "Piece"))
-    // detect_size(tab, line);
-    }
 }
 
 void map_val(t_table *tab, char *line)
@@ -67,9 +56,9 @@ void map_fill_1(t_table *tab, char *line)
                 while(line[i])
                 {
                     if(line[i] == 'o' || line[i] == 'O')
-                        tab->map1[x][y] = -1;
-                    else if (line[i] == 'x' || line[i] == 'X')
                         tab->map1[x][y] = -2;
+                    else if (line[i] == 'x' || line[i] == 'X')
+                        tab->map1[x][y] = -1;
                     i++;
                     y++;
                 }

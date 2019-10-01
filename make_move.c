@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:40 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/28 19:47:34 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/29 20:32:58 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,64 +31,27 @@ void    copy_map(t_table *tab)
         y = 0;
         while(y <= 16)
         {
-            tab->tmpmap1[x][y] = tab->map1[x][y];
+            tab->h_map1[x][y] = tab->map1[x][y];
             y++;
         }
         x++;
     }
 }
 
-void make_move(t_table *tab)
+void print_array(t_table *tab)
 {
     int x = 0;
     int y = 0;
-    int j = 0;
-    int i = 0;
-    int check;
 
-    while(!tab->good)
+    while(x <= 14)
     {
-        j = 0;
-        copy_map(tab);
-        check = 0;
-        i = 0;
-        x = tab->f_x;
-        while(tab->full_piece[j][i])
+        y = 0;
+        while(y <= 17)
         {
-            y = tab->f_y;
-            while(tab->full_piece[j][i])
-            {
-                tab->tmpmap1[x][y] = tab->tmpmap1[x][y] + tab->full_piece[j][i];
-                i++;
-                y++;
-            }
-            i = 0;
-            j++;
-            x++;
+            printf("|%d|", tab->h_map1[x][y]);
+            y++;
         }
-        x = 0;
-        while(x <= 14)
-        {
-            y = 0;
-            while(y <= 16)
-            {
-                if(tab->tmpmap1[x][y] == 7)
-                check++;
-                y++;
-            }
-            x++;
-        }
-        if (check == 1)
-        {
-            tab->good = 1;
-            print_move(tab);
-        }
-        if(tab->f_y <= 16)
-        tab->f_y++;
-        else
-        {
-            tab->f_x++;
-            tab->f_y = 0;
-        }
+        printf("\n");
+        x++;
     }
 }

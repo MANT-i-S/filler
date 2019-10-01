@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/28 19:24:04 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/09/29 20:31:36 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void detect_size(t_table *tab, char *line)
     digit[j++] = line[i++];
     digit[j] = '\0';
     tab->piece_max_x = ft_atoi(digit);
+    ft_bzero(digit, 3);
+    i++;
+    j = 0;
+    while(line[i] >= '0' && line[i] <= '9')
+    digit[j++] = line[i++];
+    tab->piece_max_y = ft_atoi(digit);
     free(digit);
     take_piece(tab, line);
 }
@@ -57,6 +63,7 @@ void take_piece(t_table *tab, char *line)
         }
         x++;
     }
-    make_move(tab);
+    heat_map_1(tab);
+    //make_move(tab);
 }
 
