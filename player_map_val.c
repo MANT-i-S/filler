@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/29 14:22:13 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 13:50:48 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,56 @@
 void player_val(t_table *tab, char *line)
 {
     get_next_line(0, &line);
-    if(ft_strstr(line, "p1 : [players/sholiak.filler]"))
-    tab->myplayer = -1;
-    else if(ft_strstr(line, "p2 : [players/sholiak.filler]"))
-    tab->myplayer = -2;
+    if (ft_strstr(line, "p1 : [players/sholiak.filler]"))
+        tab->myplayer = -7;
+    else if (ft_strstr(line, "p2 : [players/sholiak.filler]"))
+        tab->myplayer = -8;
 }
 
 void map_val(t_table *tab, char *line)
 {
     get_next_line(0, &line);
-    if(ft_strstr(line, "Plateau 15 17:"))
-    tab->map_size = 1;
-    else if(ft_strstr(line, "Plateau 24 40:"))
-    tab->map_size = 2;
-    else if(ft_strstr(line, "Plateau 100 99:"))
-    tab->map_size = 3;
-    if(tab->map_size == 1)
-    map_fill_1(tab, line);
-    else if(tab->map_size == 2)
-    map_fill_2(tab, line);
-    else if(tab->map_size == 3)
-    map_fill_3(tab, line);
+    if (ft_strstr(line, "Plateau 15 17:"))
+    {
+        tab->m_max_x = 15;
+        tab->m_max_y = 17;
+    }
+    else if (ft_strstr(line, "Plateau 24 40:"))
+    {
+        tab->m_max_x = 24;
+        tab->m_max_y = 40;
+    }
+    else if (ft_strstr(line, "Plateau 100 99:"))
+    {
+        tab->m_max_x = 100;
+        tab->m_max_y = 99;
+    }
+    if(!tab->map || !tab->h_map)
+    map_alloc(tab);
+    map_fill(tab, line);
 }
 
-void map_fill_1(t_table *tab, char *line)
+void    map_alloc(t_table *tab)
+{
+    int x;
+
+    x = 0;
+    tab->map = (int**)malloc(sizeof(int*) * tab->m_max_x);
+    while(x <= tab->m_max_x)
+    {
+        tab->map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
+        x++;
+    }
+    x = 0;
+    tab->h_map = (int**)malloc(sizeof(int*) * tab->m_max_x);
+    while(x <= tab->m_max_x)
+    {
+        tab->h_map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
+        x++;
+    }
+}
+
+void map_fill(t_table *tab, char *line)
 {
     int i;
     int x;
@@ -46,79 +72,27 @@ void map_fill_1(t_table *tab, char *line)
 
     x = 0;
     get_next_line(0, &line);
-    if(ft_strstr(line, "0123456789"))
+    if (ft_strstr(line, "0123456789"))
+    {
+        while (x < tab->m_max_x)
         {
-            while(x <= 14)
+            get_next_line(0, &line);
+            y = 0;
+            i = 4;
+            while (y < tab->m_max_y)
             {
-                get_next_line(0, &line);
-                y = 0;
-                i = 4;
-                while(line[i])
-                {
-                    if(line[i] == 'o' || line[i] == 'O')
-                        tab->map1[x][y] = -2;
-                    else if (line[i] == 'x' || line[i] == 'X')
-                        tab->map1[x][y] = -1;
-                    i++;
-                    y++;
-                }
-                x++;
+                if ((line[i] == 'o' || line[i] == 'O') && tab->myplayer == -7)
+                    tab->map[x][y] = 99;
+                else if((line[i] == 'x' || line[i] == 'X') && tab->myplayer == -8)
+                    tab->map[x][y] = 99;
+                else if(line[i] == 'x' || line[i] == 'X' || line[i] == 'o' || line[i] == 'O')
+                    tab->map[x][y] = 0;
+                else 
+                    tab->map[x][y] = 42;
+                i++;
+                y++;
             }
+            x++;
         }
-}
-
-void map_fill_2(t_table *tab, char *line)
-{
-    int i;
-    int x;
-    int y;
-
-    x = 0;
-    while(get_next_line(0, &line))
-        if(ft_strstr(line, "0123456789"))
-        {
-            while(get_next_line(0, &line) && !ft_strstr(line, "Piece"))
-            {
-                y = 0;
-                i = 4;
-                while(line[i])
-                {
-                    if(line[i] == 'x' || line[i] == 'X')
-                        tab->map2[x][y] = -1;
-                    else if (line[i] == 'o' || line[i] == 'O')
-                        tab->map2[x][y] = -2;
-                    i++;
-                    y++;
-                }
-                x++;
-            }
-        }
-}
-
-void map_fill_3(t_table *tab, char *line)
-{
-    int i;
-    int x;
-    int y;
-
-    x = 0;
-    while(get_next_line(0, &line))
-        if(ft_strstr(line, "0123456789"))
-        {
-            while(get_next_line(0, &line) && !ft_strstr(line, "Piece"))
-            {
-                y = 0;
-                i = 4;
-                while(line[i])
-                {
-                    if(line[i] == 'x' || line[i] == 'X')
-                        tab->map3[x][y] = -1;
-                    else if (line[i] == 'o' || line[i] == 'O')
-                        tab->map3[x][y] = -2;
-                    i++;
-                    y++;
-                }
-                x++;
-            }
-        }
+    }
 }
