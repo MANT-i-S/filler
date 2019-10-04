@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:12:32 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 14:28:21 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:11:38 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int try_piece(t_table *tab, int x, int y);
 void count_move(t_table *tab, int x, int y);
 int	get_next_line(int const fd, char **line);
 void print_array(int **array); //remove;
+void print_piece(int **array); //remove;
 
 #endif

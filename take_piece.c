@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 14:35:41 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:24:03 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void take_piece(t_table *tab, char *line)
         {
             if(line[i] == '*')
                 tab->f_piece[x][y] = -42;
+            else 
+                tab->f_piece[x][y] = 0;
             i++;
             y++;
         }

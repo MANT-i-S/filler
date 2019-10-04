@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 13:50:48 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:28:55 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void map_val(t_table *tab, char *line)
         tab->m_max_x = 100;
         tab->m_max_y = 99;
     }
-    if(!tab->map || !tab->h_map)
     map_alloc(tab);
-    map_fill(tab, line);
 }
 
 void    map_alloc(t_table *tab)

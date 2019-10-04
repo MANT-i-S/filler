@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:40 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 14:32:16 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:53:44 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ void make_move(t_table *tab)
 {
     tab->min = 4200;
 
-    while(tab->t_x < tab->m_max_x && tab->t_y < tab->m_max_y)
+    while(tab->t_x <= tab->m_max_x - tab->p_max_x)
     {   
         if(try_piece(tab, tab->t_x, tab->t_y))
         {
             count_move(tab, tab->t_x, tab->t_y);
-            if(tab->min > tab->t_total)
+            if(tab->min > tab->t_total && tab->t_total)
             {
-                tab->min = tab->t_total; 
+                tab->min = tab->t_total;
                 tab->f_x = tab->t_x;
                 tab->f_y = tab->t_y;
             }
         }
-        if(tab->t_y >= tab->m_max_y - 1)
-        {
-        tab->t_x++;
-        tab->t_y = 0;
-        }
-        if(tab->t_y < tab->m_max_y - 1)
+        if(tab->t_y < tab->m_max_y - tab->p_max_y)
             tab->t_y++;
+        else if(tab->t_x <= tab->m_max_x - tab->p_max_x)
+        {
+            tab->t_x++;
+            tab->t_y = 0;
+        }
     }
     print_move(tab);
 }
@@ -55,16 +55,17 @@ int try_piece(t_table *tab, int x, int y)
 
     j = 0;
     touch = 0;
-    while (x + tab->p_max_x <= tab->m_max_x && j < tab->p_max_x)
+    while (j < tab->p_max_x)
     {
         i = 0;
         y = tab->t_y;
-        while (y + tab->p_max_y <= tab->m_max_y && i < tab->p_max_y)
+        while (i < tab->p_max_y)
         {
             if (tab->h_map[x][y] == 0 && tab->f_piece[j][i] == -42)
                 return (0);
             else if (tab->h_map[x][y] == 99 && tab->f_piece[j][i] == -42)
-                touch++;
+                if(touch++ > 1)
+                    return(0);
             i++;
             y++;
         }
@@ -83,17 +84,18 @@ void count_move(t_table *tab, int x, int y)
 
     j = 0;
     tab->t_total = 0;
-    while (x + tab->p_max_x <= tab->m_max_x && j < tab->p_max_x)
+    while (x + j < tab->m_max_x && j < tab->p_max_x)
     {
         i = 0;
         y = tab->t_y;
-        while (y + tab->p_max_y <= tab->m_max_y && i < tab->p_max_y)
+        while (y + i < tab->m_max_y && i < tab->p_max_y)
         {
-            if (tab->f_piece[j][i] == -42)
+            if (tab->f_piece[j][i] == -42 && tab->h_map[x][y] != 99)
             tab->t_total += tab->h_map[x][y];
             i++;
             y++;
         }
+        j++;
         x++;
     }
 }
