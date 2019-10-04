@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 17:24:03 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 18:50:08 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void piece_alloc(t_table *tab)
 
     x = 0;
     tab->f_piece = (int**)malloc(sizeof(int*) * tab->p_max_x);
-    while(x <= tab->p_max_x)
+    while(x < tab->p_max_x)
     {
         tab->f_piece[x] = (int*)malloc(sizeof(int) * tab->p_max_y);
         x++;

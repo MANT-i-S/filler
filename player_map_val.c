@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 17:28:55 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 18:49:26 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void    map_alloc(t_table *tab)
 
     x = 0;
     tab->map = (int**)malloc(sizeof(int*) * tab->m_max_x);
-    while(x <= tab->m_max_x)
+    while(x < tab->m_max_x)
     {
         tab->map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
         x++;
     }
     x = 0;
     tab->h_map = (int**)malloc(sizeof(int*) * tab->m_max_x);
-    while(x <= tab->m_max_x)
+    while(x < tab->m_max_x)
     {
         tab->h_map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
         x++;

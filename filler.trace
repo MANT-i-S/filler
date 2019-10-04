@@ -1,5 +1,7 @@
-seed = 9770
+seed = 7229
 X: error on input
+players/sholiak.filler: Segfault at 20
+O: error on input
 players/grati.filler won
 Score:
-2AGAINST1
+42AGAINST20
