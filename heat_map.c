@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 14:52:15 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 18:53:17 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 21:16:49 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void heat_map(t_table *tab)
 {
     copy_map(tab);
     heating_map(tab);
-    print_array(tab->h_map);
+    //print_array(tab->h_map);
     make_move(tab);
 }
 

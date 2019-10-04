@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:40 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 16:53:44 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/03 21:22:07 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void print_move(t_table *tab)
     ft_putchar(' ');
     ft_putnbr(tab->f_y);
     ft_putchar('\n');
+    free(tab->f_piece);
 }
 
 void make_move(t_table *tab)
@@ -84,11 +85,11 @@ void count_move(t_table *tab, int x, int y)
 
     j = 0;
     tab->t_total = 0;
-    while (x + j < tab->m_max_x && j < tab->p_max_x)
+    while (j < tab->p_max_x)
     {
         i = 0;
         y = tab->t_y;
-        while (y + i < tab->m_max_y && i < tab->p_max_y)
+        while (i < tab->p_max_y)
         {
             if (tab->f_piece[j][i] == -42 && tab->h_map[x][y] != 99)
             tab->t_total += tab->h_map[x][y];
