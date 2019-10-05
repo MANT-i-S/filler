@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:40 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 21:22:07 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 18:23:21 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void print_move(t_table *tab)
     ft_putchar(' ');
     ft_putnbr(tab->f_y);
     ft_putchar('\n');
-    free(tab->f_piece);
+    del_piece(tab);
 }
 
 void make_move(t_table *tab)

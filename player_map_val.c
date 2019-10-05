@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 21:09:14 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 18:29:33 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ void map_val(t_table *tab, char *line)
     map_alloc(tab);
 }
 
-void    map_alloc(t_table *tab)
+void map_alloc(t_table *tab)
 {
     int x;
 
     x = 0;
-    tab->map = (int**)malloc(sizeof(int*) * tab->m_max_x);
-    while(x < tab->m_max_x)
+    tab->map = (int **)malloc(sizeof(int *) * tab->m_max_x);
+    while (x < tab->m_max_x)
     {
-        tab->map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
+        tab->map[x] = (int *)malloc(sizeof(int) * tab->m_max_y);
         x++;
     }
     x = 0;
-    tab->h_map = (int**)malloc(sizeof(int*) * tab->m_max_x);
-    while(x < tab->m_max_x)
+    tab->h_map = (int **)malloc(sizeof(int *) * tab->m_max_x);
+    while (x < tab->m_max_x)
     {
-        tab->h_map[x] = (int*)malloc(sizeof(int) * tab->m_max_y);
+        tab->h_map[x] = (int *)malloc(sizeof(int) * tab->m_max_y);
         x++;
     }
 }
@@ -67,27 +67,25 @@ void map_fill(t_table *tab, char *line)
     int y;
 
     x = 0;
-    if (ft_strstr(line, "0123456789"))
+    while (x < tab->m_max_x)
     {
-        while (x < tab->m_max_x)
+        get_next_line(0, &line);
+        y = 0;
+        i = 4;
+        while (y < tab->m_max_y)
         {
-            get_next_line(0, &line);
-            y = 0;
-            i = 4;
-            while (y < tab->m_max_y)
-            {
-                if ((line[i] == 'o' || line[i] == 'O') && tab->myplayer == -7)
-                    tab->map[x][y] = 99;
-                else if((line[i] == 'x' || line[i] == 'X') && tab->myplayer == -8)
-                    tab->map[x][y] = 99;
-                else if(line[i] == 'x' || line[i] == 'X' || line[i] == 'o' || line[i] == 'O')
-                    tab->map[x][y] = 0;
-                else 
-                    tab->map[x][y] = 42;
-                i++;
-                y++;
-            }
-            x++;
+            if ((line[i] == 'o' || line[i] == 'O') && tab->myplayer == -7)
+                tab->map[x][y] = 99;
+            else if ((line[i] == 'x' || line[i] == 'X') && tab->myplayer == -8)
+                tab->map[x][y] = 99;
+            else if (line[i] == 'x' || line[i] == 'X' || line[i] == 'o' || line[i] == 'O')
+                tab->map[x][y] = 0;
+            else
+                tab->map[x][y] = 42;
+            i++;
+            y++;
         }
+        x++;
+        ft_strdel(&line);
     }
 }

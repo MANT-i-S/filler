@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 16:45:51 by sholiak           #+#    #+#             */
-/*   Updated: 2019/09/23 19:22:21 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 18:20:58 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# define BUFF_SIZE 42
+# define BUFF_SIZE 1
 
 int		get_next_line(const int fd, char **line);
 

@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:06:04 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/03 20:16:38 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 18:34:05 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void detect_size(t_table *tab, char *line)
     int j;
     char *digit;
 
-    digit = malloc(sizeof(char) * 3);
+    digit = ft_strnew(2);
     i = 0;
     j = 0;
     while(line[i] < '0' || line[i] > '9')
@@ -64,7 +64,7 @@ void take_piece(t_table *tab, char *line)
         get_next_line(0, &line);
         i = 0;
         y = 0;
-        while(line[i])
+        while(y < tab->p_max_y)
         {
             if(line[i] == '*')
                 tab->f_piece[x][y] = -42;
@@ -74,6 +74,7 @@ void take_piece(t_table *tab, char *line)
             y++;
         }
         x++;
+        ft_strdel(&line);
     }
     heat_map(tab);
 }
