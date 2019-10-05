@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:12:32 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/04 19:15:23 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 19:57:05 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void			map_val(t_table *tab, char *line);
 void			map_alloc(t_table *tab);
 void			filler(t_table *tab, char *line);
 void			map_fill(t_table *tab, char *line);
+void			map_fill_2(t_table *t, char *line, int x, int y);
 void			take_piece(t_table *tab, char *line);
 void			detect_size(t_table *tab, char *line);
 void			piece_alloc(t_table *tab);

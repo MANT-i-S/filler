@@ -6,7 +6,7 @@
 /*   By: sholiak <sholiak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:08:35 by sholiak           #+#    #+#             */
-/*   Updated: 2019/10/04 19:23:09 by sholiak          ###   ########.fr       */
+/*   Updated: 2019/10/04 20:00:49 by sholiak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,29 @@ void	map_fill(t_table *t, char *line)
 	{
 		get_next_line(0, &line);
 		y = 0;
-		while (y < t->m_max_y)
-		{
-			if ((line[y + 4] == 'o' || line[y + 4] == 'O') && t->mp == 1)
-				t->map[x][y] = 99;
-			else if ((line[y + 4] == 'x' || line[y + 4] == 'X') && t->mp == 2)
-				t->map[x][y] = 99;
-			else if (line[y + 4] == 'x' || line[y + 4] == 'X' ||
-			line[y + 4] == 'o' || line[y + 4] == 'O')
-				t->map[x][y] = 0;
-			else
-				t->map[x][y] = 42;
-			y++;
-		}
+		map_fill_2(t, line, x, y);
 		x++;
 		ft_strdel(&line);
+	}
+}
+
+void	map_fill_2(t_table *t, char *line, int x, int y)
+{
+	while (y < t->m_max_y)
+	{
+		if (line[y + 4] == 'O' && t->mp == 1)
+			t->map[x][y] = 99;
+		else if (line[y + 4] == 'X' && t->mp == 2)
+			t->map[x][y] = 99;
+		else if (line[y + 4] == 'o' && t->mp == 1)
+			t->map[x][y] = 98;
+		else if (line[y + 4] == 'x' && t->mp == 2)
+			t->map[x][y] = 98;
+		else if (line[y + 4] == 'x' || line[y + 4] == 'X' ||
+		line[y + 4] == 'o' || line[y + 4] == 'O')
+			t->map[x][y] = 0;
+		else
+			t->map[x][y] = 42;
+		y++;
 	}
 }
